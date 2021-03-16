@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import javax.persistence.CascadeType.ALL;
 
 @Entity
 @Table(name = "vacina")
@@ -32,7 +33,7 @@ public class CadastroAplicacaoVacina {
 	private String email;
 	
 	
-	@OneToMany
+	@OneToMany(mappedBy = "vacina", cascade = CascadeType.ALL)
 	@JoinColumn(name="usuario_cpf")
 	private List<CadastroUsuario> usuario;
 	
