@@ -1,21 +1,22 @@
-package com.orangezup.orangezup.model;
+package com.example.demo.model;
 
 import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import org.hibernate.validator.constraints.br.CPF;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity //uma entidade do jpa hibernete
-@Table(name = "cadastro") //nome da tabela no banco de dados
-public class Cadastro {
-	
-	@Id
-	@CPF
+@Entity 
+@Table(name="usuario")
+public class CadastroUsuario {	
+
+	@Id	
 	@NotBlank(message = "Campo obrigatório!")	
 	private String cpf;
 	
@@ -26,11 +27,16 @@ public class Cadastro {
 	@NotBlank(message = "Campo obrigatório!")
 	private String email;	
 	
-	@JsonFormat(pattern = "dd/mm/yyyy")
-	private Date data_nasci;	
+	@JsonFormat(pattern =  "dd/mm/yyyy")
+	private Date nascimento;
 	
+	
+
 	@ManyToOne	
-	private Vacina nomeVacina;
+	private CadastroAplicacaoVacina vacina;
+	
+
+
 	
 	public String getCpf() {return cpf;}
 	public void setCpf(String cpf) {this.cpf = cpf;}
@@ -38,8 +44,7 @@ public class Cadastro {
 	public void setNome(String nome) {this.nome = nome;}
 	public String getEmail() {return email;}
 	public void setEmail(String email) {this.email = email;}	
-	public Date getData_nasci() {return data_nasci;}
-	public void setData_nasci(Date data_nasci) {this.data_nasci = data_nasci;}
-	public Vacina getNomeVacina() {return nomeVacina;}
-	public void setNomeVacina(Vacina nomeVacina) {this.nomeVacina = nomeVacina;}	
+	public Date getNascimento() {return nascimento;}
+	public void setNascimento(Date nascimento) {this.nascimento = nascimento;}
+	
 }

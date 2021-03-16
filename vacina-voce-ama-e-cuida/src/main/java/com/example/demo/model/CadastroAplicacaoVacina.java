@@ -1,4 +1,4 @@
-package com.orangezup.orangezup.model;
+package com.example.demo.model;
 
 import java.util.Date;
 import java.util.List;
@@ -13,13 +13,13 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity //uma entidade do jpa hibernete
-@Table(name = "vacina") //nome da tabela no banco de dados
-public class Vacina {
+@Entity
+@Table(name = "vacina")
+public class CadastroAplicacaoVacina {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	@NotBlank(message = "Campo obrigatório!")
 	private String nomeVacina;
@@ -31,19 +31,21 @@ public class Vacina {
 	@NotBlank(message = "Campo obrigatório!")
 	private String email;
 	
-	@OneToMany
-	@JoinColumn(name = "id")
-	private List<Cadastro> cadastro;
 	
-	public long getId() {return id;}
-	public void setId(long id) {this.id = id;}
+	@OneToMany
+	@JoinColumn(name="usuario_cpf")
+	private List<CadastroUsuario> usuario;
+	
+	
+	
+	public Long getId() {return id;}
+	public void setId(Long id) {this.id = id;}
 	public String getNomeVacina() {return nomeVacina;}
 	public void setNomeVacina(String nomeVacina) {this.nomeVacina = nomeVacina;}
 	public Date getVacinacao() {return vacinacao;}
 	public void setVacinacao(Date vacinacao) {this.vacinacao = vacinacao;}
 	public String getEmail() {return email;}
 	public void setEmail(String email) {this.email = email;}
-	public List<Cadastro> getCadastro() {return cadastro;}
-	public void setCadastro(List<Cadastro> cadastro) {this.cadastro = cadastro;}
-	
+	public List<CadastroUsuario> getUsuario() {return usuario;}
+	public void setUsuario(List<CadastroUsuario> usuario) {this.usuario = usuario;}
 }
